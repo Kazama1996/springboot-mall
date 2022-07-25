@@ -1,12 +1,15 @@
 package com.kazama.springbootmall.service.impl;
 
 
+import com.kazama.springbootmall.constant.ProductCategory;
 import com.kazama.springbootmall.dao.ProductDao;
 import com.kazama.springbootmall.dto.ProductRequest;
 import com.kazama.springbootmall.model.Product;
 import com.kazama.springbootmall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class ProductServiceImpl implements ProductService {
@@ -33,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProductById(Integer productId) {
 
         productDao.deleteProductById(productId);
+
+    }
+
+    public List<Product> getProducts(ProductCategory category,String search){
+        return productDao.getProducts(category,search);
 
     }
 }
