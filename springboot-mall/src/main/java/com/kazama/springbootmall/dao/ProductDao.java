@@ -1,6 +1,7 @@
 package com.kazama.springbootmall.dao;
 
 import com.kazama.springbootmall.constant.ProductCategory;
+import com.kazama.springbootmall.dto.ProductQueryParams;
 import com.kazama.springbootmall.dto.ProductRequest;
 import com.kazama.springbootmall.model.Product;
 
@@ -17,7 +18,7 @@ public interface ProductDao {
     public void deleteProductById(Integer productId);
 
 
-    List<Product> getProducts(ProductCategory category,String search);
+    List<Product> getProducts(ProductQueryParams productQueryParams);
 
 
 }
