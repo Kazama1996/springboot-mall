@@ -1,6 +1,7 @@
 package com.kazama.springbootmall.rowmapper;
 
 import com.kazama.springbootmall.constant.ProductCategory;
+import com.kazama.springbootmall.dto.ProductRequest;
 import com.kazama.springbootmall.model.Product;
 import org.springframework.jdbc.core.RowMapper;
 
