@@ -13,7 +13,6 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     public Product getProductById(Integer productId){
-        System.out.println("OK service");
 
         return productDao.getFromProductId(productId);
     }

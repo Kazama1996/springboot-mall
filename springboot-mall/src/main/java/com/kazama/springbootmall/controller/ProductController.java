@@ -18,13 +18,12 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/products/{productId}")
-    public ResponseEntity<Product> getProduct(@PathVariable Integer productId){
+    public ResponseEntity<Product> getProduct(@PathVariable Integer productId) {
         Product product = productService.getProductById(productId);
 
-        System.out.println("OK controller");
-
-        if(product!=null) return ResponseEntity.status(HttpStatus.OK).body(product);
+        if (product != null) return ResponseEntity.status(HttpStatus.OK).body(product);
         else return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 
     }
+
 }
