@@ -3,6 +3,7 @@ package com.kazama.springbootmall.dao.impl;
 import com.kazama.springbootmall.dao.UserDao;
 import com.kazama.springbootmall.dto.UserRegisterRequest;
 import com.kazama.springbootmall.model.User;
+import com.kazama.springbootmall.rowmapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -31,12 +33,16 @@ public class UserDaoImpl implements UserDao {
         map.put("created_date" , now);
         map.put("last_modified_date" , now);
 
+        System.out.println(map);
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
 
-        Integer userId = keyHolder.getKey().intValue();
 
         namedParameterJdbcTemplate.update(sql ,new MapSqlParameterSource(map),keyHolder);
+
+        Integer userId = keyHolder.getKey().intValue();
+
 
         return userId;
 
@@ -45,7 +51,21 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(Integer userId) {
+        String sql= "SELECT user_id ,email , password , created_date ,last_modified_date FROM user WHERE user_id = :userId";
 
-        return null ;
+        Map<String ,Object> map= new HashMap<>();
+
+        map.put("userId" , userId);
+
+        List<User> userList =namedParameterJdbcTemplate.query(sql , new MapSqlParameterSource(map) , new UserRowMapper());
+
+        if(userList.size()>0)return userList.get(0);
+        else return null ;
+
+
+
+
+
+
     }
 }
