@@ -2,15 +2,16 @@ package com.kazama.springbootmall.dto;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-public class UserRegisterRequest {
+public class UserLoginRequest {
 
     @NotBlank
     @Email
-    String email;
+    private String email;
+
     @NotBlank
-    String password;
+    private String password;
+
 
     public String getEmail() {
         return email;

@@ -1,11 +1,16 @@
 package com.kazama.springbootmall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class User {
 
     private Integer user_id;
+    @JsonProperty("e_mail")
     private String email;
+    @JsonIgnore
     private String password;
     private Date created_date;
     private Date last_modified_date;
