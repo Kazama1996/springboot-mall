@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -35,6 +36,11 @@ public class UserServiceImpl implements UserService {
             log.warn("Email {} 已經被註冊" , userRegisterRequest.getEmail());
             throw  new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+
+        // 使用MD5 生成Hash Value
+
+        String hashedPassword = DigestUtils.md5DigestAsHex(userRegisterRequest.getPassword().getBytes());
+        userRegisterRequest.setPassword(hashedPassword);
         return userDao.createUser(userRegisterRequest);
 
     }
@@ -51,12 +57,17 @@ public class UserServiceImpl implements UserService {
 
         System.out.println(user);
 
+        //檢查user 是否存在
         if(user==null) {
             log.warn("Email : {} 尚未註冊" , userLoginRequest.getEmail());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
+        // 使用MD5生成 密碼的Hash Value
 
-        if(user.getPassword().equals(userLoginRequest.getPassword())){
+        String hashedPassword = DigestUtils.md5DigestAsHex(userLoginRequest.getPassword().getBytes());
+
+        //比較密碼
+        if(user.getPassword().equals(hashedPassword)){
             return user;
         }
         else {
