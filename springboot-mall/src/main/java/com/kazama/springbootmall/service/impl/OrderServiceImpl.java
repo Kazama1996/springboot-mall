@@ -36,9 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
 
             //convert buyItem to orderItem
-
             OrderItem orderItem = new OrderItem();
-
             orderItem.setProduct_id(buyItem.getProduct_id());
             orderItem.setQuantity(buyItem.getQuantity());
             orderItem.setAmount(amount);

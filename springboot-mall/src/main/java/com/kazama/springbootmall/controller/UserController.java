@@ -22,7 +22,7 @@ public class UserController  {
     private UserService userService;
 
 
-    @PostMapping("/user/register")
+    @PostMapping("/users/register")
     public ResponseEntity<User> register(@RequestBody @Valid UserRegisterRequest userRegisterRequest){
 
 
@@ -38,7 +38,7 @@ public class UserController  {
 
 
     }
-    @PostMapping("/user/login")
+    @PostMapping("/users/login")
     public ResponseEntity<User> login(@RequestBody @Valid UserLoginRequest userLoginRequest){
 
 
