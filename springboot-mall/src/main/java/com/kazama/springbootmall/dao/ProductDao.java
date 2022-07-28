@@ -17,10 +17,12 @@ public interface ProductDao {
 
     public void deleteProductById(Integer productId);
 
+    public void updateStock(Integer producId , Integer updatedValue);
 
-    List<Product> getProducts(ProductQueryParams productQueryParams);
+    public Integer countProducts(ProductQueryParams productQueryParams);
 
-    Integer countProducts(ProductQueryParams productQueryParams);
+    public List<Product> getProducts(ProductQueryParams productQueryParams);
+
 
 
 }
