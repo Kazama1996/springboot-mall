@@ -1,6 +1,7 @@
 package com.kazama.springbootmall.dao;
 
 
+import com.kazama.springbootmall.dto.OrderQueryParams;
 import com.kazama.springbootmall.model.Order;
 import com.kazama.springbootmall.model.OrderItem;
 
@@ -14,4 +15,8 @@ public interface OrderDao {
 
     public Order getOrderById(Integer orderId);
     public List<OrderItem> getOrderItemsByOrderId(Integer orderId);
+
+    public List<Order> getOrders(OrderQueryParams orderQueryParams);
+
+    public Integer countOrders(OrderQueryParams orderQueryParams);
 }
