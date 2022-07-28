@@ -1,14 +1,18 @@
 package com.kazama.springbootmall.model;
 
 import javax.xml.crypto.Data;
+import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     Integer order_id;
     Integer user_id;
     Integer total_amount;
-    Data created_date;
+    Date created_date;
     Date last_modified_date;
+
+    private List<OrderItem> orderItemList ;
 
     public Integer getOrder_id() {
         return order_id;
@@ -34,11 +38,11 @@ public class Order {
         this.total_amount = total_amount;
     }
 
-    public Data getCreated_date() {
+    public Date getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Data created_date) {
+    public void setCreated_date(Date created_date) {
         this.created_date = created_date;
     }
 
@@ -49,4 +53,15 @@ public class Order {
     public void setLast_modified_date(Date last_modified_date) {
         this.last_modified_date = last_modified_date;
     }
+
+    public List<OrderItem> getOrderItemList() {
+        return orderItemList;
+    }
+
+    public void setOrderItemList(List<OrderItem> orderItemList) {
+        this.orderItemList = orderItemList;
+    }
 }
+
+
+

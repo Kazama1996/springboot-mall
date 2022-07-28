@@ -4,6 +4,7 @@ import com.kazama.springbootmall.dao.OrderDao;
 import com.kazama.springbootmall.dao.ProductDao;
 import com.kazama.springbootmall.dto.BuyItem;
 import com.kazama.springbootmall.dto.CreateOrderRequest;
+import com.kazama.springbootmall.model.Order;
 import com.kazama.springbootmall.model.OrderItem;
 import com.kazama.springbootmall.model.Product;
 import com.kazama.springbootmall.service.OrderService;
@@ -52,5 +53,16 @@ public class OrderServiceImpl implements OrderService {
         orderDao.createOrderItems(order_id , orderItemList);
 
         return order_id ;
+    }
+
+    @Override
+    public Order getOrderById(Integer orderId) {
+        Order order = orderDao.getOrderById(orderId);
+
+        List<OrderItem> orderItemList = orderDao.getOrderItemsByOrderId(orderId);
+
+        order.setOrderItemList(orderItemList);
+
+        return order;
     }
 }

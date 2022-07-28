@@ -1,6 +1,8 @@
 package com.kazama.springbootmall.controller;
 
 import com.kazama.springbootmall.dto.CreateOrderRequest;
+import com.kazama.springbootmall.model.Order;
+import com.kazama.springbootmall.model.OrderItem;
 import com.kazama.springbootmall.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class OrderController {
@@ -25,7 +28,11 @@ public class OrderController {
 
         Integer order_id = orderService.createOrder(userId,createOrderRequest);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(order_id);
+
+        Order order = orderService.getOrderById(order_id);
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(order);
     }
 
 
